@@ -506,36 +506,35 @@ text-decoration:none;
       </div>
 
       <!-- RIGHT SIDE -->
-      <div class="contact-form-area">
+     <div class="contact-form-area">
 
-        <h2>Send Me a Message</h2>
+<h2>Send Me a Message</h2>
 
-        <form action="mailto:praveenkumarsfw@gmail.com" method="post" enctype="text/plain">
+<form>
 
-          <input type="text" placeholder="Your Name" required>
+<input type="text" id="name" placeholder="Your Name" required>
 
-          <input type="email" placeholder="Your Email" required>
+<input type="email" id="email" placeholder="Your Email" required>
 
-          <input type="text" placeholder="Subject">
+<input type="text" id="subject" placeholder="Subject">
 
-          <textarea rows="5" placeholder="Message"></textarea>
+<textarea id="message" rows="5" placeholder="Message"></textarea>
 
-          <div class="contact-buttons">
+<div class="contact-buttons">
 
-            <button type="submit" class="send-email">
-              ✉ Send via Email
-            </button>
+<button type="button" class="send-email" onclick="sendEmail()">
+✉ Send via Email
+</button>
 
-            <a href="https://wa.me/919500706538" target="_blank" class="send-whatsapp">
-              💬 Send via WhatsApp
-            </a>
+<button type="button" class="send-whatsapp" onclick="sendWhatsApp()">
+💬 Send via WhatsApp
+</button>
 
-          </div>
+</div>
 
-        </form>
+</form>
 
-      </div>
-
+</div>
     </div>
 
   </div>
@@ -548,25 +547,69 @@ text-decoration:none;
   </footer>
 
   <script>
-    // Lightbox JS
-    const certLightbox = document.getElementById("cert-lightbox");
-    const certFull = document.getElementById("cert-full");
-    const certClose = document.getElementById("cert-close");
+  // Lightbox JS
+  const certLightbox = document.getElementById("cert-lightbox");
+  const certFull = document.getElementById("cert-full");
+  const certClose = document.getElementById("cert-close");
 
-    document.querySelectorAll(".cert-img").forEach(img => {
-      img.addEventListener("click", () => {
-        certFull.src = img.src;
-        certLightbox.style.display = "flex";
-      });
+  document.querySelectorAll(".cert-img").forEach(img => {
+    img.addEventListener("click", () => {
+      certFull.src = img.src;
+      certLightbox.style.display = "flex";
     });
+  });
 
-    certClose.addEventListener("click", () => {
-      certLightbox.style.display = "none";
-    });
+  certClose.addEventListener("click", () => {
+    certLightbox.style.display = "none";
+  });
 
-    certLightbox.addEventListener("click", e => {
-      if (e.target === certLightbox) certLightbox.style.display = "none";
-    });
-  </script>
+  certLightbox.addEventListener("click", e => {
+    if (e.target === certLightbox) certLightbox.style.display = "none";
+  });
+
+
+/* EMAIL FUNCTION */
+
+function sendEmail(){
+
+var name = document.getElementById("name").value;
+var email = document.getElementById("email").value;
+var subject = document.getElementById("subject").value;
+var message = document.getElementById("message").value;
+
+var mail = "mailto:praveenkumarsfw@gmail.com"
++ "?subject=" + encodeURIComponent(subject)
++ "&body="
++ "Name: " + name + "%0A"
++ "Email: " + email + "%0A"
++ "Message: " + message;
+
+window.location.href = mail;
+
+}
+
+
+/* WHATSAPP FUNCTION */
+
+function sendWhatsApp(){
+
+var name = document.getElementById("name").value;
+var email = document.getElementById("email").value;
+var subject = document.getElementById("subject").value;
+var message = document.getElementById("message").value;
+
+var phone = "919500706538";
+
+var url = "https://wa.me/" + phone + "?text="
++ "Name: " + name + "%0A"
++ "Email: " + email + "%0A"
++ "Subject: " + subject + "%0A"
++ "Message: " + message;
+
+window.open(url, "_blank");
+
+}
+
+</script>
 </body>
 </html>
